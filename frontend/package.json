@@ -61,8 +61,8 @@
   },
   "scripts": {
     "start": "set FAST_REFRESH=false&& craco start",
-    "build": "craco build",
-    "test": "craco test"
+    "build": "node ./node_modules/@craco/craco/dist/bin/craco.js build",
+    "test": "node ./node_modules/@craco/craco/dist/bin/craco.js test"
   },
   "browserslist": {
     "production": [
