@@ -11,11 +11,16 @@
   ],
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/static/(.*)",
+      "dest": "/frontend/build/static/$1"
+    },
+    {
+      "src": "/asset-manifest.json",
+      "dest": "/frontend/build/asset-manifest.json"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/frontend/build/index.html"
     }
   ]
 }
