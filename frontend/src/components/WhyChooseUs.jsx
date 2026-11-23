@@ -25,13 +25,13 @@ export const WhyChooseUs = () => {
               <span className="text-orange-400 text-sm font-medium">Sobre Nosotros</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Una Galería en la Que <span className="text-orange-500">Puedes Confiar</span>
+              Una Rentadora en la Que <span className="text-orange-500">Puedes Confiar</span>
             </h2>
             <p className="text-gray-400 text-lg mb-6 leading-relaxed">
-              En Melfry Auto Gallery SRL, no solo vendemos vehículos, creamos relaciones duraderas basadas en la confianza y el respeto mutuo.
+              En Melfry Rent Car no solo rentamos vehículos, creamos relaciones duraderas basadas en la confianza y el respeto mutuo.
             </p>
             <p className="text-gray-400 text-lg mb-6 leading-relaxed">
-              Con más de 10 años de experiencia en el mercado automotriz, nos enorgullece ofrecer un servicio personalizado donde cada cliente es tratado como parte de nuestra familia.
+              Con más de 10 años de experiencia en el servicio de renta de vehículos, nos enorgullece ofrecer un servicio personalizado donde cada cliente es tratado como parte de nuestra familia.
             </p>
             <div className="flex items-center gap-4">
               <div className="w-16 h-1 bg-gradient-to-r from-orange-500 to-transparent"></div>
@@ -94,8 +94,8 @@ export const WhyChooseUs = () => {
             </h3>
             <p className="text-gray-300 text-lg leading-relaxed">
               Proporcionar vehículos de calidad excepcional acompañados de un servicio honesto, transparente y personalizado. 
-              Queremos que cada cliente se sienta valorado, respetado y satisfecho con su experiencia de compra, 
-              construyendo relaciones que perduren más allá de la transacción.
+              Queremos que cada cliente se sienta valorado, respetado y satisfecho con su experiencia de renta, 
+              construyendo relaciones que perduren más allá de cada viaje.
             </p>
           </div>
         </div>

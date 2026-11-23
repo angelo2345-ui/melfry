@@ -45,7 +45,7 @@ export const Contact = () => {
             <span className="text-orange-400 text-sm font-medium">Contáctanos</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            ¿Listo Para Encontrar Tu <span className="text-orange-500">Próximo Auto?</span>
+            ¿Listo Para Rentar Tu <span className="text-orange-500">Próximo Vehículo?</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Estamos aquí para ayudarte. Comunícate con nosotros y te responderemos lo antes posible.

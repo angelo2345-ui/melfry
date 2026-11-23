@@ -13,11 +13,11 @@ export const Footer = () => {
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
               <span className="text-orange-500">MELFRY</span>
-              <span className="block text-sm font-normal text-gray-400 tracking-wider mt-1">AUTO GALLERY SRL</span>
+              <span className="block text-sm font-normal text-gray-400 tracking-wider mt-1">RENT CAR SRL</span>
             </h3>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              Tu socio de confianza en la búsqueda del vehículo perfecto. 
-              Servicio excepcional, vehículos de calidad.
+              Tu socio de confianza para rentar el vehículo que necesitas. 
+              Servicio excepcional, tarifas claras y vehículos de calidad.
             </p>
             <p className="text-orange-400 font-semibold italic text-sm">
               "Con Dios Todo es Posible"
@@ -41,7 +41,7 @@ export const Footer = () => {
                   onClick={() => document.getElementById('inventario')?.scrollIntoView({ behavior: 'smooth' })}
                   className="text-gray-400 hover:text-orange-500 transition-colors"
                 >
-                  Inventario
+                  Flota
                 </button>
               </li>
               <li>
@@ -125,7 +125,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © {currentYear} Melfry Auto Gallery SRL. Todos los derechos reservados.
+            © {currentYear} Melfry Rent Car SRL. Todos los derechos reservados.
           </p>
           <div className="flex gap-6 text-sm">
             <button className="text-gray-400 hover:text-orange-500 transition-colors">

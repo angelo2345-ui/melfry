@@ -38,15 +38,15 @@ export const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
-            Maneja Tu
+            Renta Tu
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-              Sueño Hoy
+              Vehículo Ideal
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Vehículos premium. Servicio excepcional. Una experiencia de compra en la que puedes confiar.
+            Vehículos en perfectas condiciones, tarifas diarias claras y un servicio en el que puedes confiar.
           </p>
 
           {/* CTA Buttons */}
@@ -55,7 +55,7 @@ export const Hero = () => {
               onClick={() => scrollToSection('inventario')}
               className="group bg-orange-500 text-white px-8 py-4 rounded-full hover:bg-orange-600 transition-all font-semibold flex items-center justify-center gap-2 shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 hover:scale-105"
             >
-              Ver Inventario
+              Ver Flota
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button
@@ -70,8 +70,8 @@ export const Hero = () => {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-4 md:gap-8 mt-12 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
             <div className="text-center md:text-left">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-1">500+</div>
-              <div className="text-gray-400 text-sm">Vehículos Vendidos</div>
+              <div className="text-3xl md:text-4xl font-bold text-white mb-1">50+</div>
+              <div className="text-gray-400 text-sm">Vehículos en Flota</div>
             </div>
             <div className="text-center md:text-left">
               <div className="text-3xl md:text-4xl font-bold text-white mb-1">98%</div>

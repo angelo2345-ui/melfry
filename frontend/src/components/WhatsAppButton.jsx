@@ -14,7 +14,7 @@ export const WhatsAppButton = () => {
   }, []);
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/18092457000?text=Hola, me gustaría obtener más información sobre sus vehículos.', '_blank');
+    window.open('https://wa.me/18092457000?text=Hola, me gustaría obtener más información sobre la renta de vehículos.', '_blank');
   };
 
   return (

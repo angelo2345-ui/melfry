@@ -31,7 +31,7 @@ export const Navbar = () => {
           <div className="flex-shrink-0">
             <h1 className="text-2xl md:text-3xl font-bold text-white">
               <span className="text-orange-500">MELFRY</span>
-              <span className="block text-xs md:text-sm font-normal text-gray-300 tracking-wider">AUTO GALLERY SRL</span>
+              <span className="block text-xs md:text-sm font-normal text-gray-300 tracking-wider">RENT CAR SRL</span>
             </h1>
           </div>
 
@@ -41,7 +41,7 @@ export const Navbar = () => {
               Inicio
             </button>
             <button onClick={() => scrollToSection('inventario')} className="text-white hover:text-orange-500 transition-colors font-medium">
-              Inventario
+              Flota
             </button>
             <button onClick={() => scrollToSection('nosotros')} className="text-white hover:text-orange-500 transition-colors font-medium">
               Nosotros
@@ -53,6 +53,9 @@ export const Navbar = () => {
               <Phone size={18} />
               Contactar
             </button>
+            <a href="/admin/login" className="text-gray-400 hover:text-orange-500 transition-colors font-medium text-sm">
+              Admin
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,7 +78,7 @@ export const Navbar = () => {
               Inicio
             </button>
             <button onClick={() => scrollToSection('inventario')} className="block w-full text-left px-4 py-3 text-white hover:bg-orange-500/20 rounded-lg transition-colors">
-              Inventario
+              Flota
             </button>
             <button onClick={() => scrollToSection('nosotros')} className="block w-full text-left px-4 py-3 text-white hover:bg-orange-500/20 rounded-lg transition-colors">
               Nosotros
@@ -86,6 +89,9 @@ export const Navbar = () => {
             <button onClick={() => scrollToSection('contacto')} className="block w-full text-left px-4 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
               Contactar
             </button>
+            <a href="/admin/login" className="block w-full text-left px-4 py-3 text-gray-400 hover:bg-orange-500/20 rounded-lg transition-colors">
+              Admin
+            </a>
           </div>
         </div>
       )}
