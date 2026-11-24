@@ -209,18 +209,18 @@ export const ReservationsAdmin = () => {
 
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1">
-          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Buscar por cliente o vehículo..."
-            className="w-full bg-gray-900 border border-gray-800 text-white rounded-lg pl-10 pr-3 py-2 focus:outline-none focus:border-orange-500 placeholder-gray-500"
+            className="w-full bg-card border border-border text-foreground rounded-lg pl-10 pr-3 py-2 focus:outline-none focus:border-primary placeholder:text-muted-foreground"
           />
         </div>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-gray-900 border border-gray-800 text-white rounded-lg px-3 py-2 focus:outline-none focus:border-orange-500"
+          className="bg-card border border-border text-foreground rounded-lg px-3 py-2 focus:outline-none focus:border-primary"
         >
           <option value="">Todos los estados</option>
           {STATUSES.map((s) => (
@@ -248,7 +248,7 @@ export const ReservationsAdmin = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead>
-                <tr className="text-gray-400 border-b border-gray-800">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="px-4 py-3 font-medium">Vehículo</th>
                   <th className="px-4 py-3 font-medium">Cliente</th>
                   <th className="px-4 py-3 font-medium">Fechas</th>
@@ -261,23 +261,23 @@ export const ReservationsAdmin = () => {
               </thead>
               <tbody>
                 {filtered.map((r) => (
-                  <tr key={r.id} className="border-b border-gray-800/60 hover:bg-gray-800/30">
+                  <tr key={r.id} className="border-b border-border hover:bg-muted/60">
                     <td className="px-4 py-3">
-                      <div className="text-white">
+                      <div className="text-foreground">
                         {r.vehicles ? `${r.vehicles.brand} ${r.vehicles.model}` : "—"}
                       </div>
-                      <div className="text-xs text-gray-500">{r.vehicles?.plate || ""}</div>
+                      <div className="text-xs text-muted-foreground">{r.vehicles?.plate || ""}</div>
                     </td>
                     <td className="px-4 py-3">
-                      <div className="text-white">{r.customers?.full_name || "—"}</div>
-                      <div className="text-xs text-gray-500">{r.customers?.phone || ""}</div>
+                      <div className="text-foreground">{r.customers?.full_name || "—"}</div>
+                      <div className="text-xs text-muted-foreground">{r.customers?.phone || ""}</div>
                     </td>
-                    <td className="px-4 py-3 text-gray-300 whitespace-nowrap">
+                    <td className="px-4 py-3 text-foreground/80 whitespace-nowrap">
                       {formatDate(r.start_date)} – {formatDate(r.end_date)}
                     </td>
-                    <td className="px-4 py-3 text-gray-300">{r.days}</td>
-                    <td className="px-4 py-3 text-gray-300">{formatCurrency(r.daily_rate)}</td>
-                    <td className="px-4 py-3 text-white font-medium">{formatCurrency(r.total)}</td>
+                    <td className="px-4 py-3 text-foreground/80">{r.days}</td>
+                    <td className="px-4 py-3 text-foreground/80">{formatCurrency(r.daily_rate)}</td>
+                    <td className="px-4 py-3 text-foreground font-medium">{formatCurrency(r.total)}</td>
                     <td className="px-4 py-3">
                       <Badge color={STATUS_COLORS[r.status] || "gray"}>{r.status}</Badge>
                     </td>
@@ -285,14 +285,14 @@ export const ReservationsAdmin = () => {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => openEdit(r)}
-                          className="p-2 text-gray-400 hover:text-orange-500 transition-colors"
+                          className="p-2 text-muted-foreground hover:text-primary transition-colors"
                           title="Editar"
                         >
                           <Pencil size={16} />
                         </button>
                         <button
                           onClick={() => handleDelete(r)}
-                          className="p-2 text-gray-400 hover:text-red-400 transition-colors"
+                          className="p-2 text-muted-foreground hover:text-destructive transition-colors"
                           title="Eliminar"
                         >
                           <Trash2 size={16} />

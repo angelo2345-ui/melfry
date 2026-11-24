@@ -215,14 +215,14 @@ export const VehiclesAdmin = () => {
         <div className="mb-6 relative">
           <Search
             size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
           />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Buscar por marca, modelo, matrícula o categoría..."
-            className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-3 py-2 focus:outline-none focus:border-orange-500 transition-colors placeholder-gray-500"
+            className="w-full bg-muted border border-input text-foreground rounded-lg pl-10 pr-3 py-2 focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground"
           />
         </div>
 
@@ -247,7 +247,7 @@ export const VehiclesAdmin = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-gray-400 border-b border-gray-800">
+                <tr className="text-left text-muted-foreground border-b border-border">
                   <th className="py-3 px-3 font-medium">Foto</th>
                   <th className="py-3 px-3 font-medium">Vehículo</th>
                   <th className="py-3 px-3 font-medium">Año</th>
@@ -262,33 +262,33 @@ export const VehiclesAdmin = () => {
                 {filtered.map((v) => (
                   <tr
                     key={v.id}
-                    className="border-b border-gray-800 last:border-0 hover:bg-gray-800/40 transition-colors"
+                    className="border-b border-border last:border-0 hover:bg-muted/60 transition-colors"
                   >
                     <td className="py-3 px-3">
                       {v.image_url ? (
                         <img
                           src={v.image_url}
                           alt={`${v.brand} ${v.model}`}
-                          className="w-14 h-10 object-cover rounded-lg border border-gray-800"
+                          className="w-14 h-10 object-cover rounded-lg border border-border"
                         />
                       ) : (
-                        <div className="w-14 h-10 rounded-lg border border-gray-800 bg-gray-800 flex items-center justify-center text-gray-500">
+                        <div className="w-14 h-10 rounded-lg border border-border bg-muted flex items-center justify-center text-muted-foreground">
                           <Car size={18} />
                         </div>
                       )}
                     </td>
                     <td className="py-3 px-3">
-                      <div className="text-white font-medium">
+                      <div className="text-foreground font-medium">
                         {v.brand} {v.model}
                       </div>
-                      {v.plate && <div className="text-gray-500 text-xs">{v.plate}</div>}
+                      {v.plate && <div className="text-muted-foreground text-xs">{v.plate}</div>}
                     </td>
-                    <td className="py-3 px-3 text-gray-300">{v.year ?? "—"}</td>
-                    <td className="py-3 px-3 text-gray-300">
+                    <td className="py-3 px-3 text-foreground/80">{v.year ?? "—"}</td>
+                    <td className="py-3 px-3 text-foreground/80">
                       {v.category ? <Badge color="blue">{v.category}</Badge> : "—"}
                     </td>
-                    <td className="py-3 px-3 text-gray-300">{v.transmission || "—"}</td>
-                    <td className="py-3 px-3 text-orange-400 font-medium">
+                    <td className="py-3 px-3 text-foreground/80">{v.transmission || "—"}</td>
+                    <td className="py-3 px-3 text-primary font-medium">
                       {formatCurrency(v.daily_rate)}
                     </td>
                     <td className="py-3 px-3">
@@ -300,14 +300,14 @@ export const VehiclesAdmin = () => {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEdit(v)}
-                          className="p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition-colors"
+                          className="p-2 rounded-lg text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
                           title="Editar"
                         >
                           <Pencil size={16} />
                         </button>
                         <button
                           onClick={() => handleDelete(v)}
-                          className="p-2 rounded-lg text-gray-300 hover:text-red-400 hover:bg-red-500/15 transition-colors"
+                          className="p-2 rounded-lg text-foreground/80 hover:text-destructive hover:bg-destructive/15 transition-colors"
                           title="Eliminar"
                         >
                           <Trash2 size={16} />
@@ -467,9 +467,9 @@ export const VehiclesAdmin = () => {
               type="checkbox"
               checked={form.featured}
               onChange={handleChange("featured")}
-              className="w-5 h-5 rounded bg-gray-800 border border-gray-700 text-orange-500 focus:ring-orange-500 accent-orange-500"
+              className="w-5 h-5 rounded bg-muted border border-input text-primary focus:ring-primary accent-orange-500"
             />
-            <span className="text-sm text-gray-300">Marcar como destacado</span>
+            <span className="text-sm text-foreground/80">Marcar como destacado</span>
           </label>
         </form>
       </Modal>

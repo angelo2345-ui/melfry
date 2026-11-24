@@ -9,7 +9,7 @@ import {
   LogOut,
   Menu,
   X,
-  ExternalLink,
+  ArrowUpRight,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
@@ -25,83 +25,105 @@ export const AdminLayout = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const email = user?.email || "Administrador";
+  const initial = email.charAt(0).toUpperCase();
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/admin/login");
   };
 
-  const linkClass = ({ isActive }) =>
-    `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
-      isActive
-        ? "bg-orange-500 text-white"
-        : "text-gray-300 hover:bg-gray-800 hover:text-white"
-    }`;
+  const today = new Date().toLocaleDateString("es-DO", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
 
   return (
-    <div className="min-h-screen bg-black text-white flex">
-      {/* Sidebar */}
+    <div className="min-h-screen admin-grain text-foreground flex">
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-900 border-r border-gray-800 flex flex-col transition-transform lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-[17rem] bg-sidebar text-sidebar-foreground flex flex-col transition-transform duration-300 lg:translate-x-0 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="px-6 py-5 border-b border-gray-800 flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-bold">
-              <span className="text-orange-500">MELFRY</span>
-            </h1>
-            <p className="text-xs text-gray-400 tracking-wider">PANEL ADMIN</p>
+        <div className="px-6 pt-7 pb-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground font-display text-lg font-bold">
+              M
+            </div>
+            <div>
+              <p className="font-display text-lg font-semibold leading-none tracking-tight">Melfry</p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-sidebar-foreground/50 mt-1">Rent Car</p>
+            </div>
           </div>
-          <button className="lg:hidden text-gray-400" onClick={() => setMobileOpen(false)}>
+          <button className="lg:hidden text-sidebar-foreground/60" aria-label="Cerrar menú" onClick={() => setMobileOpen(false)}>
             <X size={22} />
           </button>
         </div>
 
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+        <p className="px-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-sidebar-foreground/40 mb-2">Gestión</p>
+        <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
           {navItems.map(({ to, label, icon: Icon }) => (
-            <NavLink key={to} to={to} className={linkClass} onClick={() => setMobileOpen(false)}>
-              <Icon size={20} />
+            <NavLink
+              key={to}
+              to={to}
+              onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `group relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-sidebar-accent !text-sidebar-accent-foreground before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[3px] before:rounded-full before:bg-sidebar-primary"
+                    : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                }`
+              }
+            >
+              <Icon size={18} className="shrink-0" />
               {label}
             </NavLink>
           ))}
         </nav>
 
-        <div className="p-4 border-t border-gray-800 space-y-2">
+        <div className="p-3 border-t border-sidebar-border space-y-1">
           <a
             href="/"
-            className="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors text-sm"
+            className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
           >
-            <ExternalLink size={18} />
             Ver sitio público
+            <ArrowUpRight size={16} />
           </a>
-          <button
-            onClick={handleSignOut}
-            className="w-full flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-red-500/20 hover:text-red-400 transition-colors text-sm"
-          >
-            <LogOut size={18} />
-            Cerrar sesión
-          </button>
+          <div className="flex items-center gap-3 px-3 py-3 mt-1 rounded-lg bg-sidebar-accent/60">
+            <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-sidebar-primary/20 text-sidebar-primary text-sm font-semibold">
+              {initial}
+            </div>
+            <p className="flex-1 min-w-0 truncate text-xs text-sidebar-foreground/80">{email}</p>
+            <button
+              onClick={handleSignOut}
+              aria-label="Cerrar sesión"
+              title="Cerrar sesión"
+              className="grid h-8 w-8 place-items-center rounded-md text-sidebar-foreground/60 hover:bg-destructive/20 hover:text-destructive transition-colors"
+            >
+              <LogOut size={16} />
+            </button>
+          </div>
         </div>
       </aside>
 
-      {/* Overlay móvil */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-black/60 z-30 lg:hidden" onClick={() => setMobileOpen(false)} />
+        <div className="fixed inset-0 bg-foreground/40 backdrop-blur-sm z-30 lg:hidden" onClick={() => setMobileOpen(false)} />
       )}
 
-      {/* Contenido */}
-      <div className="flex-1 lg:ml-64 flex flex-col min-h-screen">
-        <header className="sticky top-0 z-20 bg-gray-900/95 backdrop-blur border-b border-gray-800 px-4 sm:px-6 py-4 flex items-center justify-between">
-          <button className="lg:hidden text-gray-300" onClick={() => setMobileOpen(true)}>
-            <Menu size={24} />
+      <div className="flex-1 lg:ml-[17rem] flex flex-col min-h-screen min-w-0">
+        <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border px-4 sm:px-8 h-16 flex items-center gap-4">
+          <button className="lg:hidden text-foreground" aria-label="Abrir menú" onClick={() => setMobileOpen(true)}>
+            <Menu size={22} />
           </button>
-          <div className="ml-auto text-sm text-gray-400">
-            {user?.email || "Administrador"}
-          </div>
+          <p className="text-sm text-muted-foreground capitalize">{today}</p>
+          <span className="ml-auto inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-success" />
+            En línea
+          </span>
         </header>
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 p-4 sm:p-8 lg:p-10 max-w-[1400px] w-full mx-auto">
           <Outlet />
         </main>
       </div>

@@ -172,11 +172,11 @@ export const CustomersAdmin = () => {
     : customers;
 
   const renderLicense = (expiry) => {
-    if (!expiry) return <span className="text-gray-500">—</span>;
+    if (!expiry) return <span className="text-muted-foreground">—</span>;
     const expired = expiry < todayISO();
     return (
       <div className="flex items-center gap-2">
-        <span className="text-gray-300 whitespace-nowrap">{formatDate(expiry)}</span>
+        <span className="text-foreground/80 whitespace-nowrap">{formatDate(expiry)}</span>
         <Badge color={expired ? "red" : "green"}>{expired ? "Vencida" : "Vigente"}</Badge>
       </div>
     );
@@ -202,16 +202,16 @@ export const CustomersAdmin = () => {
           <div className="relative w-full sm:max-w-sm">
             <Search
               size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
             />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por nombre, cédula, teléfono o email…"
-              className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-3 py-2 focus:outline-none focus:border-orange-500 transition-colors placeholder-gray-500"
+              className="w-full bg-muted border border-input text-foreground rounded-lg pl-10 pr-3 py-2 focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground"
             />
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Users size={16} />
             <span>
               {filtered.length} {filtered.length === 1 ? "cliente" : "clientes"}
@@ -234,7 +234,7 @@ export const CustomersAdmin = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wider text-gray-400 border-b border-gray-800">
+                <tr className="text-left text-xs uppercase tracking-wider text-muted-foreground border-b border-border">
                   <th className="py-3 pr-4 font-medium">Nombre</th>
                   <th className="py-3 pr-4 font-medium">Cédula</th>
                   <th className="py-3 pr-4 font-medium">Teléfono</th>
@@ -245,24 +245,24 @@ export const CustomersAdmin = () => {
                   <th className="py-3 pl-4 font-medium text-right">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-800">
+              <tbody className="divide-y divide-border">
                 {filtered.map((customer) => {
                   const phoneDigits = digitsOnly(customer.phone);
                   return (
-                    <tr key={customer.id} className="hover:bg-gray-800/40 transition-colors">
-                      <td className="py-3 pr-4 text-white font-medium whitespace-nowrap">
+                    <tr key={customer.id} className="hover:bg-muted/60 transition-colors">
+                      <td className="py-3 pr-4 text-foreground font-medium whitespace-nowrap">
                         {customer.full_name}
                       </td>
-                      <td className="py-3 pr-4 text-gray-300 whitespace-nowrap">
+                      <td className="py-3 pr-4 text-foreground/80 whitespace-nowrap">
                         {customer.document_id || "—"}
                       </td>
-                      <td className="py-3 pr-4 text-gray-300 whitespace-nowrap">
+                      <td className="py-3 pr-4 text-foreground/80 whitespace-nowrap">
                         {customer.phone ? (
                           <a
                             href={`https://wa.me/${phoneDigits}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-orange-400 hover:text-orange-500 transition-colors"
+                            className="text-primary hover:text-primary transition-colors"
                             title="Abrir en WhatsApp"
                           >
                             {customer.phone}
@@ -271,11 +271,11 @@ export const CustomersAdmin = () => {
                           "—"
                         )}
                       </td>
-                      <td className="py-3 pr-4 text-gray-300">
+                      <td className="py-3 pr-4 text-foreground/80">
                         {customer.email ? (
                           <a
                             href={`mailto:${customer.email}`}
-                            className="hover:text-white transition-colors"
+                            className="hover:text-foreground transition-colors"
                           >
                             {customer.email}
                           </a>
@@ -283,11 +283,11 @@ export const CustomersAdmin = () => {
                           "—"
                         )}
                       </td>
-                      <td className="py-3 pr-4 text-gray-300 whitespace-nowrap">
+                      <td className="py-3 pr-4 text-foreground/80 whitespace-nowrap">
                         {customer.license_number || "—"}
                       </td>
                       <td className="py-3 pr-4">{renderLicense(customer.license_expiry)}</td>
-                      <td className="py-3 pr-4 text-gray-400">
+                      <td className="py-3 pr-4 text-muted-foreground">
                         {customer.notes ? (
                           <span
                             className="inline-block max-w-[12rem] truncate align-bottom"
@@ -306,7 +306,7 @@ export const CustomersAdmin = () => {
                               href={`https://wa.me/${phoneDigits}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="px-2 py-1 rounded-lg text-xs font-medium text-green-400 border border-green-500/30 hover:bg-green-500/10 transition-colors"
+                              className="px-2 py-1 rounded-lg text-xs font-medium text-success border border-success/30 hover:bg-success/10 transition-colors"
                               title="Llamar por WhatsApp"
                             >
                               WhatsApp
@@ -324,7 +324,7 @@ export const CustomersAdmin = () => {
                             variant="ghost"
                             onClick={() => handleDelete(customer)}
                             title="Eliminar"
-                            className="!px-2 !py-1 text-red-400 hover:text-red-500 hover:bg-red-500/10"
+                            className="!px-2 !py-1 text-destructive hover:text-destructive hover:bg-destructive/10"
                           >
                             <Trash2 size={16} />
                           </Button>

@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { Button, Input, ErrorText } from "./components/AdminUI";
 
 export const AdminLogin = () => {
-  const { signIn, isSupabaseConfigured } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,30 +33,31 @@ export const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white">
-            <span className="text-orange-500">MELFRY</span> RENT CAR
-          </h1>
-          <p className="text-gray-400 mt-2">Acceso al panel de administración</p>
+    <div className="min-h-screen grid lg:grid-cols-2 bg-background">
+      <div className="hidden lg:flex flex-col justify-between bg-sidebar text-sidebar-foreground p-12 relative overflow-hidden">
+        <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-sidebar-primary/20 blur-3xl" />
+        <div className="flex items-center gap-3 relative">
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground font-display text-lg font-bold">M</div>
+          <p className="font-display text-lg font-semibold tracking-tight">Melfry Rent Car</p>
         </div>
+        <div className="relative">
+          <p className="font-display text-5xl font-semibold leading-[1.05] tracking-tight">
+            Tu flota,<br />reservas y pagos<br /><span className="text-sidebar-primary">en un solo lugar.</span>
+          </p>
+          <p className="mt-6 max-w-sm text-sidebar-foreground/60">Panel de administración para gestionar el día a día del negocio.</p>
+        </div>
+        <p className="text-xs text-sidebar-foreground/40 relative">© {new Date().getFullYear()} Melfry Rent Car</p>
+      </div>
 
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="bg-orange-500/15 p-3 rounded-full">
-              <Lock className="text-orange-500" size={20} />
+      <div className="flex items-center justify-center p-6 admin-grain">
+        <div className="w-full max-w-sm animate-fade-up">
+          <div className="mb-8">
+            <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary mb-5">
+              <Lock size={20} />
             </div>
-            <h2 className="text-xl font-semibold text-white">Iniciar sesión</h2>
+            <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground">Bienvenido de vuelta</h1>
+            <p className="text-muted-foreground mt-2">Ingresa para acceder al panel.</p>
           </div>
-
-          {!isSupabaseConfigured && (
-            <div className="bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-sm rounded-lg p-3 mb-4">
-              Faltan las credenciales de Supabase. Completa
-              <code className="mx-1">REACT_APP_SUPABASE_URL</code> y
-              <code className="mx-1">REACT_APP_SUPABASE_ANON_KEY</code> en el archivo .env
-            </div>
-          )}
 
           <ErrorText>{error}</ErrorText>
 
@@ -83,13 +84,11 @@ export const AdminLogin = () => {
               {loading ? "Ingresando..." : "Ingresar"}
             </Button>
           </form>
-        </div>
 
-        <p className="text-center text-gray-500 text-sm mt-6">
-          <a href="/" className="hover:text-orange-500 transition-colors">
-            ← Volver al sitio
-          </a>
-        </p>
+          <p className="text-center text-muted-foreground text-sm mt-8">
+            <a href="/" className="hover:text-primary transition-colors">← Volver al sitio</a>
+          </p>
+        </div>
       </div>
     </div>
   );

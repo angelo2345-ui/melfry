@@ -203,10 +203,10 @@ export const PaymentsAdmin = () => {
         <Card className="p-0">
           <div className="p-6 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-400">Total cobrado</p>
-              <p className="text-2xl font-bold text-white mt-1">{formatCurrency(totalCobrado)}</p>
+              <p className="text-sm text-muted-foreground">Total cobrado</p>
+              <p className="text-2xl font-bold text-foreground mt-1">{formatCurrency(totalCobrado)}</p>
             </div>
-            <div className="p-3 rounded-xl bg-green-500/15 text-green-400">
+            <div className="p-3 rounded-xl bg-success/15 text-success">
               <CreditCard size={22} />
             </div>
           </div>
@@ -214,10 +214,10 @@ export const PaymentsAdmin = () => {
         <Card className="p-0">
           <div className="p-6 flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-400">Pendiente por cobrar</p>
-              <p className="text-2xl font-bold text-white mt-1">{formatCurrency(totalPendiente)}</p>
+              <p className="text-sm text-muted-foreground">Pendiente por cobrar</p>
+              <p className="text-2xl font-bold text-foreground mt-1">{formatCurrency(totalPendiente)}</p>
             </div>
-            <div className="p-3 rounded-xl bg-orange-500/15 text-orange-400">
+            <div className="p-3 rounded-xl bg-primary/15 text-primary">
               <CreditCard size={22} />
             </div>
           </div>
@@ -241,7 +241,7 @@ export const PaymentsAdmin = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
               <thead>
-                <tr className="text-gray-400 border-b border-gray-800">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="px-4 py-3 font-medium">Fecha</th>
                   <th className="px-4 py-3 font-medium">Cliente / Vehículo</th>
                   <th className="px-4 py-3 font-medium">Monto</th>
@@ -253,34 +253,34 @@ export const PaymentsAdmin = () => {
               </thead>
               <tbody>
                 {payments.map((p) => (
-                  <tr key={p.id} className="border-b border-gray-800/60 hover:bg-gray-800/30">
-                    <td className="px-4 py-3 text-gray-300 whitespace-nowrap">{formatDate(p.payment_date)}</td>
+                  <tr key={p.id} className="border-b border-border hover:bg-muted/60">
+                    <td className="px-4 py-3 text-foreground/80 whitespace-nowrap">{formatDate(p.payment_date)}</td>
                     <td className="px-4 py-3">
-                      <div className="text-white">{p.reservations?.customers?.full_name || "—"}</div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-foreground">{p.reservations?.customers?.full_name || "—"}</div>
+                      <div className="text-xs text-muted-foreground">
                         {p.reservations?.vehicles
                           ? `${p.reservations.vehicles.brand} ${p.reservations.vehicles.model}`
                           : ""}
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-white font-medium">{formatCurrency(p.amount)}</td>
+                    <td className="px-4 py-3 text-foreground font-medium">{formatCurrency(p.amount)}</td>
                     <td className="px-4 py-3">
                       {p.method ? <Badge color={METHOD_COLORS[p.method] || "gray"}>{p.method}</Badge> : "—"}
                     </td>
-                    <td className="px-4 py-3 text-gray-300 capitalize">{p.type || "—"}</td>
-                    <td className="px-4 py-3 text-gray-400">{p.reference || "—"}</td>
+                    <td className="px-4 py-3 text-foreground/80 capitalize">{p.type || "—"}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{p.reference || "—"}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => openEdit(p)}
-                          className="p-2 text-gray-400 hover:text-orange-500 transition-colors"
+                          className="p-2 text-muted-foreground hover:text-primary transition-colors"
                           title="Editar"
                         >
                           <Pencil size={16} />
                         </button>
                         <button
                           onClick={() => handleDelete(p)}
-                          className="p-2 text-gray-400 hover:text-red-400 transition-colors"
+                          className="p-2 text-muted-foreground hover:text-destructive transition-colors"
                           title="Eliminar"
                         >
                           <Trash2 size={16} />
@@ -323,8 +323,8 @@ export const PaymentsAdmin = () => {
           </Select>
 
           {form.reservation_id && (
-            <p className="text-xs text-gray-400">
-              Saldo pendiente: <span className="text-orange-400">{formatCurrency(pendingFor(form.reservation_id))}</span>
+            <p className="text-xs text-muted-foreground">
+              Saldo pendiente: <span className="text-primary">{formatCurrency(pendingFor(form.reservation_id))}</span>
             </p>
           )}
 

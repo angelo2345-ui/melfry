@@ -37,18 +37,16 @@ const STATUS_LABELS = {
 };
 
 const MetricCard = ({ icon: Icon, label, value, hint }) => (
-  <Card>
-    <div className="flex items-start justify-between gap-4">
-      <div>
-        <p className="text-sm text-gray-400">{label}</p>
-        <p className="text-2xl font-bold text-white mt-2">{value}</p>
-        {hint && <p className="text-xs text-gray-500 mt-1">{hint}</p>}
-      </div>
-      <div className="p-3 rounded-xl bg-orange-500/15 text-orange-500 shrink-0">
-        <Icon size={22} />
+  <div className="metric-card group">
+    <div className="flex items-center justify-between gap-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
+      <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+        <Icon size={18} />
       </div>
     </div>
-  </Card>
+    <p className="font-display text-3xl font-semibold tracking-tight text-foreground mt-4">{value}</p>
+    {hint && <p className="text-xs text-muted-foreground mt-2">{hint}</p>}
+  </div>
 );
 
 const monthKey = (iso) => (iso ? String(iso).slice(0, 7) : "");
@@ -190,7 +188,7 @@ export const Dashboard = () => {
 
       <ErrorText>{error}</ErrorText>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-8">
         <MetricCard
           icon={Car}
           label="Vehículos en la flota"
@@ -231,7 +229,7 @@ export const Dashboard = () => {
             <div className="overflow-x-auto -mx-2">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-gray-400 border-b border-gray-800">
+                  <tr className="text-left text-muted-foreground border-b border-border">
                     <th className="px-2 py-2 font-medium">Cliente</th>
                     <th className="px-2 py-2 font-medium">Vehículo</th>
                     <th className="px-2 py-2 font-medium">Fechas</th>
@@ -241,19 +239,19 @@ export const Dashboard = () => {
                 </thead>
                 <tbody>
                   {recentReservations.map((r) => (
-                    <tr key={r.id} className="border-b border-gray-800/60 last:border-0">
-                      <td className="px-2 py-3 text-white whitespace-nowrap">
+                    <tr key={r.id} className="border-b border-border last:border-0">
+                      <td className="px-2 py-3 text-foreground whitespace-nowrap">
                         {r.customers?.full_name || "—"}
                       </td>
-                      <td className="px-2 py-3 text-gray-300 whitespace-nowrap">
+                      <td className="px-2 py-3 text-foreground/80 whitespace-nowrap">
                         {r.vehicles
                           ? `${r.vehicles.brand} ${r.vehicles.model}`
                           : "—"}
                       </td>
-                      <td className="px-2 py-3 text-gray-400 whitespace-nowrap">
+                      <td className="px-2 py-3 text-muted-foreground whitespace-nowrap">
                         {formatDate(r.start_date)} → {formatDate(r.end_date)}
                       </td>
-                      <td className="px-2 py-3 text-white text-right whitespace-nowrap">
+                      <td className="px-2 py-3 text-foreground text-right whitespace-nowrap">
                         {formatCurrency(r.total)}
                       </td>
                       <td className="px-2 py-3">
@@ -276,21 +274,21 @@ export const Dashboard = () => {
             <div className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={monthlyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" vertical={false} />
-                  <XAxis dataKey="label" stroke="#9ca3af" tickLine={false} axisLine={false} />
-                  <YAxis stroke="#9ca3af" tickLine={false} axisLine={false} width={70} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+                  <XAxis dataKey="label" stroke="var(--muted-foreground)" tickLine={false} axisLine={false} />
+                  <YAxis stroke="var(--muted-foreground)" tickLine={false} axisLine={false} width={70} />
                   <Tooltip
                     cursor={{ fill: "rgba(249,115,22,0.08)" }}
                     contentStyle={{
-                      background: "#111827",
-                      border: "1px solid #1f2937",
+                      background: "var(--card)",
+                      border: "1px solid var(--border)",
                       borderRadius: "0.75rem",
                       color: "#fff",
                     }}
-                    labelStyle={{ color: "#9ca3af" }}
+                    labelStyle={{ color: "var(--muted-foreground)" }}
                     formatter={(value) => [formatCurrency(value), "Ingresos"]}
                   />
-                  <Bar dataKey="total" fill="#f97316" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="total" fill="var(--primary)" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
